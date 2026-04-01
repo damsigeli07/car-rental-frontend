@@ -1,3 +1,4 @@
+import Cars from './pages/Cars';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -51,6 +52,14 @@ function App() {
                 <AdminDashboard />
               </ProtectedRoute>
             }
+          />
+          <Route 
+            path="/cars" 
+            element={
+              <ProtectedRoute>
+              <Cars />
+              </ProtectedRoute>
+            } 
           />
 
           {/* Fallback */}
