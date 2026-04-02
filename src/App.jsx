@@ -12,6 +12,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cars from './pages/Cars';
+import CarDetail from './pages/CarDetail';
+import Booking from './pages/Booking';
+import MyBookings from './pages/MyBookings';
+import Payment from './pages/Payment';
+import Profile from './pages/Profile';
+import AdminDashboard from './pages/AdminDashboard';
 
 // Styles
 import './App.css';
@@ -25,57 +31,82 @@ function App() {
           
           <main className="main-content">
             <Routes>
-              {/* Public Routes */}
+              {/* ============================================ */}
+              {/* PUBLIC ROUTES (No authentication needed) */}
+              {/* ============================================ */}
+
+              {/* Home Page */}
               <Route path="/" element={<Home />} />
+
+              {/* Authentication Pages */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/cars" element={<Cars />} />
 
-              {/* Protected Routes (Customers) */}
+              {/* Car Browsing (Public) */}
+              <Route path="/cars" element={<Cars />} />
+              <Route path="/cars/:carId" element={<CarDetail />} />
+
+              {/* ============================================ */}
+              {/* PROTECTED ROUTES (Authentication required) */}
+              {/* ============================================ */}
+
+              {/* Booking Routes */}
               <Route
                 path="/booking/:carId"
                 element={
                   <ProtectedRoute>
-                    <div>Booking Page (Coming Soon)</div>
+                    <Booking />
                   </ProtectedRoute>
                 }
               />
+
+              {/* Bookings Management */}
               <Route
                 path="/my-bookings"
                 element={
                   <ProtectedRoute>
-                    <div>My Bookings Page (Coming Soon)</div>
+                    <MyBookings />
                   </ProtectedRoute>
                 }
               />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <div>Profile Page (Coming Soon)</div>
-                  </ProtectedRoute>
-                }
-              />
+
+              {/* Payment */}
               <Route
                 path="/payment/:bookingId"
                 element={
                   <ProtectedRoute>
-                    <div>Payment Page (Coming Soon)</div>
+                    <Payment />
                   </ProtectedRoute>
                 }
               />
 
-              {/* Admin Routes */}
+              {/* User Profile */}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* ============================================ */}
+              {/* ADMIN ROUTES (Admin access only) */}
+              {/* ============================================ */}
+
               <Route
                 path="/admin"
                 element={
                   <ProtectedRoute adminOnly={true}>
-                    <div>Admin Dashboard (Coming Soon)</div>
+                    <AdminDashboard />
                   </ProtectedRoute>
                 }
               />
 
-              {/* Catch all - redirect to home */}
+              {/* ============================================ */}
+              {/* CATCH ALL - Redirect to home */}
+              {/* ============================================ */}
+
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
