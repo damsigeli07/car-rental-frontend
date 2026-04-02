@@ -1,0 +1,234 @@
+.my-bookings-page {
+  min-height: calc(100vh - 60px);
+  background-color: #f5f7fa;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.my-bookings-page h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #bdc3c7;
+  background: white;
+  color: #2c3e50;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.filter-btn.active {
+  background-color: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.booking-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.booking-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.car-info h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.booking-id {
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+  font-size: 0.85rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.status-confirmed {
+  background-color: #27ae60;
+}
+
+.status-completed {
+  background-color: #3498db;
+}
+
+.status-cancelled {
+  background-color: #e74c3c;
+}
+
+.booking-details {
+  padding: 1.5rem;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.detail:last-child {
+  border-bottom: none;
+}
+
+.detail .label {
+  color: #7f8c8d;
+  font-weight: bold;
+}
+
+.detail .value {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.detail .price {
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+
+.booking-actions {
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-pay,
+.btn-view,
+.btn-cancel {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-pay,
+.btn-view {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-pay:hover,
+.btn-view:hover {
+  background-color: #5568d3;
+}
+
+.btn-cancel {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #c0392b;
+}
+
+.no-bookings {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+  color: #7f8c8d;
+}
+
+.no-bookings p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-browse {
+  padding: 0.75rem 2rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-browse:hover {
+  background-color: #5568d3;
+}
+
+@media (max-width: 768px) {
+  .my-bookings-page {
+    padding: 1rem;
+  }
+
+  .my-bookings-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .filter-buttons {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .bookings-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+  }
+}
