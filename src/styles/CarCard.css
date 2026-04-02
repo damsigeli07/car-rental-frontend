@@ -1,0 +1,167 @@
+.car-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.car-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.car-image {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-placeholder {
+  font-size: 4rem;
+  opacity: 0.3;
+}
+
+.status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+}
+
+.status-available {
+  background-color: #27ae60;
+}
+
+.status-rented {
+  background-color: #e74c3c;
+}
+
+.status-maintenance {
+  background-color: #f39c12;
+}
+
+.car-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.car-title {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.car-year {
+  color: #7f8c8d;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+}
+
+.car-details {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.car-description {
+  color: #7f8c8d;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem 0;
+  flex-grow: 1;
+}
+
+.car-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+}
+
+.price .label {
+  font-size: 0.75rem;
+  color: #7f8c8d;
+}
+
+.price .amount {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.btn-view-details {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-view-details:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .car-card {
+    flex-direction: row;
+    height: auto;
+  }
+
+  .car-image {
+    width: 150px;
+    height: 150px;
+    min-width: 150px;
+  }
+
+  .car-info {
+    padding: 1rem;
+  }
+
+  .car-title {
+    font-size: 1.1rem;
+  }
+
+  .car-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .btn-view-details {
+    width: 100%;
+    text-align: center;
+  }
+}

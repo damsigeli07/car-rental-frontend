@@ -1,55 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
+import '../styles/Auth.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    phone: '',
-    confirmPassword: ''
+    phone: ''
   });
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
     setLoading(true);
 
     try {
-      // Validation
-      if (!formData.name || !formData.email || !formData.password || !formData.phone) {
-        setError('Please fill in all fields');
-        setLoading(false);
-        return;
-      }
-
-      if (formData.password !== formData.confirmPassword) {
-        setError('Passwords do not match');
-        setLoading(false);
-        return;
-      }
-
-      if (formData.password.length < 6) {
-        setError('Password must be at least 6 characters');
-        setLoading(false);
-        return;
-      }
-
-      // API call
       const response = await authAPI.register(
         formData.name,
         formData.email,
@@ -58,118 +35,87 @@ const Register = () => {
       );
 
       if (response.success) {
-        setSuccess('Registration successful! Redirecting to login...');
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000);
-      } else {
-        setError(response.message || 'Registration failed');
+        alert('Registration successful! Please login.');
+        navigate('/login');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Email might already be registered.');
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center px-4 py-8">
-      <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">Create Account</h2>
-        <p className="text-gray-600 text-center mb-6">Join our car rental platform</p>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Register</h1>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
-          </div>
-        )}
+        {error && <div className="error-message">{error}</div>}
 
-        {success && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            {success}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Full Name</label>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
             <input
               type="text"
+              id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              disabled={loading}
+              placeholder="John Doe"
+              required
             />
           </div>
 
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Email</label>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              disabled={loading}
+              placeholder="your@email.com"
+              required
             />
           </div>
 
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              disabled={loading}
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Password</label>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
+              id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter password (min 6 characters)"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              disabled={loading}
+              placeholder="••••••••"
+              required
             />
           </div>
 
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Confirm Password</label>
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
             <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
               onChange={handleChange}
-              placeholder="Confirm your password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              disabled={loading}
+              placeholder="+94771234567"
             />
           </div>
 
           <button
             type="submit"
+            className="btn-primary"
             disabled={loading}
-            className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400"
           >
-            {loading ? 'Registering...' : 'Create Account'}
+            {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
 
-        <p className="text-center text-gray-600 mt-6">
+        <p className="auth-link">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 font-semibold hover:underline">
-            Login here
-          </Link>
+          <Link to="/login">Login here</Link>
         </p>
       </div>
     </div>
