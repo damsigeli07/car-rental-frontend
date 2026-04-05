@@ -32,3 +32,5 @@ dist/
 *.log
 npm-debug.log*
 .vite
+# Local Netlify folder
+.netlify
